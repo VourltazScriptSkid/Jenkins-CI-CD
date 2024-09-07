@@ -2,42 +2,50 @@ pipeline {
     agent any
 
     stages {
-        // Checkout the code from GitHub
         stage('Checkout SCM') {
             steps {
                 checkout scm
             }
         }
 
-        // Build the project
         stage('Build') {
             steps {
                 echo 'Building the application...'
-                // Basic build step. Replace with your actual build command if needed.
-                bat 'echo Build step complete' // Placeholder for the build command
+                bat '''
+                REM Add your build commands here (for Windows)
+                echo Build complete
+                '''
             }
         }
 
-        // Run unit tests
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                // Basic test step. Replace with your actual test command if needed.
-                bat 'echo Test step complete' // Placeholder for the test command
+                bat '''
+                REM Add your test commands here (for Windows)
+                echo Tests complete
+                '''
             }
         }
 
-        // Deploy the application (this is kept simple and local for now)
+        stage('Code Analysis') {
+            steps {
+                echo 'Performing code analysis...'
+                echo 'Tool used: SonarQube'
+            }
+        }
+
         stage('Deploy') {
             steps {
                 echo 'Deploying the application...'
-                // Simple deployment step, adjust to your actual deployment command
-                bat 'echo Deploy step complete' // Placeholder for the deploy command
+                bat '''
+                REM Add your deployment commands here (for Windows)
+                echo Deployment complete
+                '''
             }
         }
     }
 
-    // Post actions to notify via email after success or failure
     post {
         always {
             echo 'Pipeline complete.'
