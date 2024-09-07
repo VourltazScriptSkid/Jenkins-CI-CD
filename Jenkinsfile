@@ -2,50 +2,59 @@ pipeline {
     agent any
 
     stages {
+        // Checkout the code from GitHub
         stage('Checkout SCM') {
             steps {
                 checkout scm
             }
         }
 
+        // Build the project
         stage('Build') {
             steps {
                 echo 'Building the application...'
-                bat '''
-                REM Add your build commands for Windows here
-                echo Build complete
-                '''
+                // Basic build step. Replace with your actual build command if needed.
+                bat 'echo Build step complete' // Placeholder for the build command
             }
         }
 
+        // Run unit tests
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                bat '''
-                REM Add your test commands for Windows here
-                echo Tests complete
-                '''
+                // Basic test step. Replace with your actual test command if needed.
+                bat 'echo Test step complete' // Placeholder for the test command
             }
         }
 
+        // Deploy the application (this is kept simple and local for now)
         stage('Deploy') {
             steps {
                 echo 'Deploying the application...'
-                bat '''
-                REM Add your deploy commands for Windows here
-                echo Deployment complete
-                '''
+                // Simple deployment step, adjust to your actual deployment command
+                bat 'echo Deploy step complete' // Placeholder for the deploy command
             }
         }
     }
 
+    // Post actions to notify via email after success or failure
     post {
         always {
             echo 'Pipeline complete.'
         }
 
+        success {
+            echo 'Pipeline succeeded!'
+            mail to: 'andreiangeles738@gmail.com',
+                 subject: "Jenkins Pipeline Success: ${env.JOB_NAME}",
+                 body: "The Jenkins pipeline ${env.JOB_NAME} completed successfully."
+        }
+
         failure {
-            echo 'The pipeline failed.'
+            echo 'Pipeline failed!'
+            mail to: 'andreiangeles738@gmail.com',
+                 subject: "Jenkins Pipeline Failure: ${env.JOB_NAME}",
+                 body: "The Jenkins pipeline ${env.JOB_NAME} failed. Check the logs for more details."
         }
     }
 }
