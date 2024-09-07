@@ -11,20 +11,14 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the application...'
-                bat '''
-                REM Add your build commands here (for Windows)
-                echo Build complete
-                '''
+                bat 'echo Build complete'
             }
         }
 
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                bat '''
-                REM Add your test commands here (for Windows)
-                echo Tests complete
-                '''
+                bat 'echo Tests complete'
             }
         }
 
@@ -38,10 +32,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying the application...'
-                bat '''
-                REM Add your deployment commands here (for Windows)
-                echo Deployment complete
-                '''
+                bat 'echo Deployment complete'
             }
         }
     }
